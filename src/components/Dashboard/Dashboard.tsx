@@ -12,7 +12,7 @@ import {
   calculateStats,
 } from '../../utils/taskUtils';
 
-export const Dashboard = ({ theme, onThemeToggle }: DashboardProps) => {
+export const Dashboard = ({ theme}: DashboardProps) => {
   
 
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -25,8 +25,8 @@ export const Dashboard = ({ theme, onThemeToggle }: DashboardProps) => {
   
   // Load tasks from localStorage on mount
   useEffect(() => {
-    const loadedTasks = loadTasks();
-    setTasks(loadedTasks);
+    //const loadedTasks = loadTasks();
+    setTasks(loadTasks);
   }, []);
   
   // Save tasks whenever they change
@@ -81,184 +81,123 @@ export const Dashboard = ({ theme, onThemeToggle }: DashboardProps) => {
   
   const handleCancelEdit = () => {
     setEditingTask(null);
-  };
+  }
   
-  // IMPORT/EXPORT
-  const handleExport = () => {
-    exportTasks(tasks);
-  };
-  
-  const handleImport = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-    
-    importTasks(file)
-      .then(importedTasks => {
-        setTasks(importedTasks);
-        alert('🎄 Tasks imported successfully!');
-      })
-      .catch(error => {
-        alert('❌ Error importing tasks: ' + error.message);
-      });
-  };
-  
-  const bgClass = theme === 'dark' ? 'bg-dark' : 'bg-light';
+ // const bgClass = theme === 'dark' ? 'bg-dark' : 'bg-light';
   
   return (
-    <div className={`min-vh-100 ${bgClass}`} style={{
-      backgroundImage: theme === 'light' 
-        ? 'radial-gradient(circle, #fff5f5 0%, #ffe5e5 100%)' 
-        : 'none'
-    }}>
-      <div className="container-fluid py-4">
-        
-
-        <div className="row mb-4">
-          <div className="col-12">
-            <div className={`card shadow-lg border-success border-3 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-white'}`}>
-              <div className="card-body">
-                <div className="d-flex justify-content-between align-items-center flex-wrap">
-                  
-                  <div>
+    <>
+   
+                  <div className="text-center mb-5">
                     <h1 className="display-3 mb-2 text-success">
                      Task Dashboard 🎅
                     </h1>
                     <p className="text-danger mb-0 fs-5">
-                      ❄️ Manage your holiday tasks with festive cheer! 🎁
+                      ❄️ Manage your tasks with festive cheer! 🎁
                     </p>
                   </div>
                   
-                  <div className="d-flex gap-2 align-items-center flex-wrap mt-3 mt-md-0">
-                    <button
-                      onClick={onThemeToggle}
-                      className="btn btn-outline-warning"
-                      title="Toggle theme"
-                    >
-                      {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
-                    </button>
-                    
-                    
-                
-                  </div>
-                </div>
-              </div>
+                 {/* Statistics Grid */}
+      <div className="row g-4 mb-5 justify-content-center">
+        {/* Total Tasks */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-primary">
+            <div className="card-body">
+              <div className="display-4 mb-2">🎁</div>
+              <h3 className="mb-0 text-primary">{stats.total}</h3>
+              <p className="text-muted mb-0 small">Total Tasks</p>
             </div>
           </div>
         </div>
-        
-    
-        <div className="row mb-4">
-          
-          {/* Total Tasks */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-primary border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">🎁</div>
-                <h3 className="mb-0 text-primary">{stats.total}</h3>
-                <p className="text-muted mb-0 small">Total Tasks</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Pending */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-warning border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">⏳</div>
-                <h3 className="mb-0 text-warning">{stats.pending}</h3>
-                <p className="text-muted mb-0 small">Pending</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* In Progress */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-info border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">🔄</div>
-                <h3 className="mb-0 text-info">{stats.inProgress}</h3>
-                <p className="text-muted mb-0 small">In Progress</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Completed */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-success border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">✅</div>
-                <h3 className="mb-0 text-success">{stats.completed}</h3>
-                <p className="text-muted mb-0 small">Completed</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* High Priority */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-danger border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">🔴</div>
-                <h3 className="mb-0 text-danger">{stats.highPriority}</h3>
-                <p className="text-muted mb-0 small">High Priority</p>
-              </div>
-            </div>
-          </div>
-          
-          {/* Overdue */}
-          <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
-            <div className="card shadow h-100 border-danger border-3">
-              <div className="card-body text-center">
-                <div className="display-4 mb-2">⚠️</div>
-                <h3 className="mb-0 text-danger">{stats.overdue}</h3>
-                <p className="text-muted mb-0 small">Overdue</p>
-              </div>
+        {/* Pending */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-warning">
+            <div className="card-body">
+              <div className="display-4 mb-2">⏳</div>
+              <h3 className="mb-0 text-warning">{stats.pending}</h3>
+              <p className="text-muted mb-0 small">Pending</p>
             </div>
           </div>
         </div>
-        
-    
-        <div className="row">
-          
-          
-          <div className="col-lg-4 mb-4">
-            <TaskForm
-              onSubmit={editingTask ? handleUpdateTask : handleAddTask}
-              initialData={editingTask || undefined}
-              onCancel={editingTask ? handleCancelEdit : undefined}
-              theme={theme}
-            />
-            
-            <TaskFilter
-              onFilterChange={setFilters}
-              onSortChange={setSort}
-              currentFilters={filters}
-              currentSort={sort}
-              theme={theme}
-            />
-          </div>
-          
-        
-          <div className="col-lg-8">
-            <div className={`card shadow-lg border-warning border-3 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-white'}`}>
-              <div className="card-header bg-warning text-dark">
-                <h4 className="mb-0">
-                  🎁 Tasks ({filteredAndSortedTasks.length}) 🎄
-                </h4>
-              </div>
-              <div className="card-body">
-                <TaskList
-                  task={filteredAndSortedTasks}
-                  onStatusChange={handleStatusChange}
-                  onDelete={handleDeleteTask}
-                  onEdit={handleEditTask}
-                  theme={theme}
-                />
-              </div>
+        {/* In Progress */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-info">
+            <div className="card-body">
+              <div className="display-4 mb-2">🔄</div>
+              <h3 className="mb-0 text-info">{stats.inProgress}</h3>
+              <p className="text-muted mb-0 small">In Progress</p>
             </div>
           </div>
         </div>
-        
+        {/* Completed */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-success">
+            <div className="card-body">
+              <div className="display-4 mb-2">✅</div>
+              <h3 className="mb-0 text-success">{stats.completed}</h3>
+              <p className="text-muted mb-0 small">Completed</p>
+            </div>
+          </div>
+        </div>
+        {/* High Priority */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-danger">
+            <div className="card-body">
+              <div className="display-4 mb-2">🔴</div>
+              <h3 className="mb-0 text-danger">{stats.highPriority}</h3>
+              <p className="text-muted mb-0 small">High Priority</p>
+            </div>
+          </div>
+        </div>
+        {/* Overdue */}
+        <div className="col-lg-2 col-md-4 col-sm-6 mb-3">
+          <div className="card shadow h-100 text-center border-dark">
+            <div className="card-body">
+              <div className="display-4 mb-2">⚠️</div>
+              <h3 className="mb-0 text-danger">{stats.overdue}</h3>
+              <p className="text-muted mb-0 small">Overdue</p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
+
+      {/* Main Layout - Form/Filter on left, Tasks on right */}
+      <div className="row g-5">
+        <div className="col-lg-4">
+          <TaskForm
+            onSubmit={editingTask ? handleUpdateTask : handleAddTask}
+            initialData={editingTask || undefined}
+            onCancel={editingTask ? handleCancelEdit : undefined}
+            theme={theme}
+          />
+          <TaskFilter
+            onFilterChange={setFilters}
+            onSortChange={setSort}
+            currentFilters={filters}
+            currentSort={sort}
+            theme={theme}
+          />
+        </div>
+
+        <div className="col-lg-8">
+          <div className={`card shadow-lg border-warning border-3 ${theme === 'dark' ? 'bg-dark text-white' : 'bg-white'}`}>
+            <div className="card-header bg-warning text-dark">
+              <h4 className="mb-0">
+                🎁 Tasks ({filteredAndSortedTasks.length}) 🎄
+              </h4>
+            </div>
+            <div className="card-body">
+              <TaskList
+                task={filteredAndSortedTasks}
+                onStatusChange={handleStatusChange}
+                onDelete={handleDeleteTask}
+                onEdit={handleEditTask}
+                theme={theme}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };

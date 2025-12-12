@@ -76,8 +76,8 @@ export const TaskItem = ({task, onStatusChange, onDelete, onEdit, theme}: TaskIt
           {/* Progress Button */}
           <button
             onClick={() => onStatusChange(task.id, getStatus(task.status))}
-            className="btn btn-sm btn-outline-success"
-            title="Move to next status"
+            className={`btn btn-lg shadow ${task.status === 'pending' ? 'btn-warning' : task.status === 'in-progress' ? 'btn-primary' : 'btn-success'} text-white fw-bold`}
+            style={{ fontFamily: 'cursive' }}
           >
             {task.status === 'pending' && '🎄 Start Task'}
             {task.status === 'in-progress' && '🎁 Complete'}
@@ -87,17 +87,18 @@ export const TaskItem = ({task, onStatusChange, onDelete, onEdit, theme}: TaskIt
           {/* Edit Button */}
           <button
             onClick={() => onEdit(task)}
-            className="btn btn-sm btn-outline-primary"
-            title="Edit task"
+            className="btn btn-lg btn-outline-primary shadow-sm "
+          style={{ fontFamily: 'cursive' }}
           >
+        
             ✏️ Edit
           </button>
           
           {/* Delete Button */}
           <button
             onClick={() => onDelete(task.id)}
-            className="btn btn-sm btn-outline-danger"
-            title="Delete task"
+            className="btn btn-lg btn-outline-danger shadow-sm"
+            style={{ fontFamily: 'cursive' }}
           >
             🗑️ Delete
           </button>

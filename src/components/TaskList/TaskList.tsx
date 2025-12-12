@@ -26,8 +26,9 @@ export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: Task
   }
    // Render all tasks
   return (
-    <div className="task-list">
+    <div className="row justify-content-center g-4">
       {task.map((task: Task) => (
+        <div key={task.id} className="col-12 col-md-8 col-lg-6">
         <TaskItem
           key={task.id}
           task={task}
@@ -36,6 +37,7 @@ export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: Task
           onEdit={onEdit}
           theme={theme}
         />
+        </div>
       ))}
     </div>
   );
