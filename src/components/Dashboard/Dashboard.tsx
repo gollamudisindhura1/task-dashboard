@@ -10,8 +10,6 @@ import {
   filterTasks, 
   sortTasks, 
   calculateStats,
-  exportTasks,
-  importTasks
 } from '../../utils/taskUtils';
 
 export const Dashboard = ({ theme, onThemeToggle }: DashboardProps) => {
@@ -139,23 +137,8 @@ export const Dashboard = ({ theme, onThemeToggle }: DashboardProps) => {
                       {theme === 'light' ? '🌙 Dark Mode' : '☀️ Light Mode'}
                     </button>
                     
-                    <button
-                      onClick={handleExport}
-                      className="btn btn-success"
-                      title="Export tasks"
-                    >
-                      🎁 Export
-                    </button>
                     
-                    <label className="btn btn-danger mb-0">
-                      🎅 Import
-                      <input
-                        type="file"
-                        accept=".json"
-                        onChange={handleImport}
-                        className="d-none"
-                      />
-                    </label>
+                
                   </div>
                 </div>
               </div>
