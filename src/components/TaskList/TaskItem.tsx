@@ -33,13 +33,13 @@ export const TaskItem = ({task, onStatusChange, onDelete, onEdit, theme}: TaskIt
   const overdueStatus = isOverdue(task.dueDate, task.status);
 
   //Theme based background
-  const cardBgClass = theme === 'dark' 
-    ? 'bg-dark text-white border-light' 
-    : 'bg-white border-light';
+  const cardBgClass = theme === 'dark' ? 'bg-dark text-white border-light' : 'bg-white';
 
     return (
-    <div className={`card shadow-sm mb-3 border-start border-5 ${borderClass} ${cardBgClass}`}>
-      <div className="card-body"></div>
+      <div className={`card shadow-sm mb-3 border-start border-5 ${borderClass} ${
+
+cardBgClass}`}>
+      <div className="card-body">
 
       <div className="d-flex justify-content-between align-items-start mb-2">
           <h5 className="card-title mb-0">
@@ -103,7 +103,7 @@ export const TaskItem = ({task, onStatusChange, onDelete, onEdit, theme}: TaskIt
             🗑️ Delete
           </button>
         </div>
-        
+      </div> 
       </div>
   );
 };

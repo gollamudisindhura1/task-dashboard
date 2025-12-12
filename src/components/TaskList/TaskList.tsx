@@ -26,6 +26,10 @@ export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: Task
   }
    // Render all tasks
   return (
+    <div>
+    <h2 className="text-center mb-5" style={{ fontFamily: 'cursive', fontSize: '2.5rem', color: '#c41e3a' }}>
+        My Tasks 🎄
+      </h2>
     <div className="row justify-content-center g-4">
       {task.map((task: Task) => (
         <div key={task.id} className="col-12 col-md-8 col-lg-6">
@@ -39,6 +43,7 @@ export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: Task
         />
         </div>
       ))}
+    </div>
     </div>
   );
 };

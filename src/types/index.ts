@@ -89,5 +89,5 @@ export interface TaskFilterProps{
 
  export interface DashboardProps{
     theme: Theme
-    onThemeToggle : () => VoidFunction
+    onThemeToggle : () => void
  }

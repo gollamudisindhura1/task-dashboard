@@ -10,16 +10,16 @@ function App() {
   
   // Load theme from localStorage
   useEffect(() => {
-    const savedTheme = localStorage.getItem('christmas-theme') as Theme;
-    if (savedTheme) {
-      setTheme(savedTheme);
+    const saved = localStorage.getItem('christmas-theme') as Theme | null;
+    if (saved) {
+      setTheme(saved);
     }
   }, []);
   
   // Save theme and update body styling
   useEffect(() => {
     localStorage.setItem('christmas-theme', theme);
-    document.body.className = theme === 'dark' ? 'bg-dark' : 'bg-light';
+    document.body.className = theme === 'dark' ? 'bg-dark text-white' : 'bg-light';
   }, [theme]);
 
   const toggleTheme = () => {
