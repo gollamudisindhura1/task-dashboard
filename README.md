@@ -52,13 +52,13 @@ Managing Tasks
 - Tasks not saving/loading I fixed by correctly calling loadTasks() and saveTasks() in useEffect
 
 3. Your approach to component composition and state management
-I kept state in the Dashboard tasks, filters, sort, editingTask.
-Dashboard passes data and functions down to child components via props.
+- I kept state in the Dashboard tasks, filters, sort, editingTask.
+- Dashboard passes data and functions down to child components via props.
 
-TaskForm only handles input and sends data up when submitted
-TaskFilter Only handles filter/sort changes and sends updates up
-TaskList just displays tasks and calls functions for status change, edit, delete
-TaskItem has display and buttons there is no state inside
+- TaskForm only handles input and sends data up when submitted
+- TaskFilter Only handles filter/sort changes and sends updates up
+- TaskList just displays tasks and calls functions for status change, edit, delete
+- TaskItem has display and buttons there is no state inside
 
 
 # Future Improvements
