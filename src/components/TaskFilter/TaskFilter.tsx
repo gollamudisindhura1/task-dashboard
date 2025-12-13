@@ -23,28 +23,28 @@ export const TaskFilter = ({
     
     onFilterChange({
       ...currentFilters,
-      searchQuery: query
+      searchQuery: query || undefined
     });
   };
   const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newStatus = e.target.value as TaskStatus | 'all';
     setStatus(newStatus);
-    
     onFilterChange({
+      ...currentFilters,
       status: newStatus === 'all' ? undefined : newStatus,
-      priority: priority === 'all' ? undefined : priority,
-      searchQuery
+      searchQuery: currentFilters.searchQuery
     });
   };
+  
    // Handle priority filter change
   const handlePriorityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     const newPriority = e.target.value as TaskPriority | 'all';
     setPriority(newPriority);
     
     onFilterChange({
-      status: status === 'all' ? undefined : status,
+      ...currentFilters,
       priority: newPriority === 'all' ? undefined : newPriority,
-      searchQuery
+      searchQuery: currentFilters.searchQuery
     });
   };
   // Handle sort field change
@@ -65,15 +65,17 @@ export const TaskFilter = ({
     setSearchQuery('');
     setStatus('all');
     setPriority('all');
-    
+    setSortField('dueDate');
+    setSortOrder('asc');
     onFilterChange({
       status: undefined,
       priority: undefined,
-      searchQuery: ''
+      searchQuery: undefined
     });
+    onSortChange({ field: 'dueDate', order: 'asc' });
   };
   // Check if any filters are active
-  const hasActiveFilters = status !== 'all' || priority !== 'all' || searchQuery !== '';
+  const hasActiveFilters = status !== 'all' || priority !== 'all' || !!searchQuery;
 
   const cardBgClass = theme === 'dark' ? 'bg-dark text-white' : 'bg-white';
   const inputClass = theme === 'dark' 
@@ -102,7 +104,7 @@ export const TaskFilter = ({
         {/* SEARCH BAR */}
         <div className="mb-3">
           <label htmlFor="search" className="form-label fw-bold">
-            🎅 Search Christmas Tasks
+            🎅 Search Tasks
           </label>
           <input
             type="text"

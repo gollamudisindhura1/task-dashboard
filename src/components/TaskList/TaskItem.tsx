@@ -36,9 +36,7 @@ export const TaskItem = ({task, onStatusChange, onDelete, onEdit, theme}: TaskIt
   const cardBgClass = theme === 'dark' ? 'bg-dark text-white border-light' : 'bg-white';
 
     return (
-      <div className={`card shadow-sm mb-3 border-start border-5 ${borderClass} ${
-
-cardBgClass}`}>
+      <div className={`card shadow-sm mb-3 border-start border-5 ${borderClass} ${cardBgClass}`}>
       <div className="card-body">
 
       <div className="d-flex justify-content-between align-items-start mb-2">
@@ -52,7 +50,7 @@ cardBgClass}`}>
             {' '}{task.priority.toUpperCase()}
           </span>
         </div>
-        {/* // Description */}
+        {/* Description */}
 
          <p className="card-text text-muted mb-3">
           ❄️ {task.description}
@@ -104,7 +102,7 @@ cardBgClass}`}>
           </button>
         </div>
       </div> 
-      </div>
+    </div>
   );
 };
-    
+  

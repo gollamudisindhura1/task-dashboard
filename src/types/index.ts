@@ -52,7 +52,7 @@ export interface TaskStats{
 // Props for the TaskList Component
 
 export interface TaskListProps{
-    task : Task[]
+    tasks : Task[]
     onStatusChange : (taskId:string, newStatus: TaskStatus) => void
     onDelete : (taskId:string) => void
     onEdit: (task: Task) => void

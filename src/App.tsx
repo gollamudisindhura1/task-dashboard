@@ -15,11 +15,15 @@ function App() {
       setTheme(saved);
     }
   }, []);
-  
+
   // Save theme and update body styling
   useEffect(() => {
     localStorage.setItem('christmas-theme', theme);
-    document.body.className = theme === 'dark' ? 'bg-dark text-white' : 'bg-light';
+   if (theme === 'dark') {
+      document.body.classList.add('bg-dark', 'text-white');
+    } else {
+      document.body.classList.remove('bg-dark', 'text-white');
+    }
   }, [theme]);
 
   const toggleTheme = () => {

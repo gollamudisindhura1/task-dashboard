@@ -3,10 +3,10 @@ import type {Task, TaskListProps} from "../../types";
 import { TaskItem } from "./TaskItem";
 
 
-export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: TaskListProps) => {
+export const TaskList = ({ tasks, onStatusChange, onDelete, onEdit, theme }: TaskListProps) => {
   
   // Empty state 
-  if (task.length === 0) {
+  if (tasks.length === 0) {
     return (
       <div className="text-center py-5">
         <div className="mb-3" style={{ fontSize: '5rem' }}>
@@ -31,7 +31,7 @@ export const TaskList = ({ task, onStatusChange, onDelete, onEdit, theme }: Task
         My Tasks 🎄
       </h2>
     <div className="row justify-content-center g-4">
-      {task.map((task: Task) => (
+      {tasks.map((task: Task) => (
         <div key={task.id} className="col-12 col-md-8 col-lg-6">
         <TaskItem
           key={task.id}

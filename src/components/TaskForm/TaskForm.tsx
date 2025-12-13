@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 import { useState, useEffect } from 'react';
 import type { TaskFormProps, TaskFormData } from '../../types';
 import { validateTaskTitle, validateTaskDueDate } from '../../utils/taskUtils';
@@ -27,13 +28,15 @@ export const TaskForm = ({ onSubmit, initialData, onCancel, theme }: TaskFormPro
   // Load initial data when editing
   useEffect(() => {
     if (initialData) {
-      // eslint-disable-next-line react-hooks/set-state-in-effect
+
       setFormData({
         title: initialData.title,
         description: initialData.description,
         priority: initialData.priority,
         dueDate: initialData.dueDate
       });
+      setErrors({});
+      setTouched({});
     }
   }, [initialData]);
   

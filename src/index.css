@@ -1,7 +1,5 @@
-/* index.css */
-/* 🎄 CHRISTMAS THEMED GLOBAL STYLES 🎄 */
+/* src/index.css - Complete Christmas Theme CSS */
 
-/* Reset and base styles */
 * {
   margin: 0;
   padding: 0;
@@ -9,237 +7,132 @@
 }
 
 body {
-  font-family: 'Segoe UI', 'Arial', sans-serif;
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-#root {
-  width: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color 0.4s ease, color 0.4s ease;
   min-height: 100vh;
 }
 
-/* 🎄 CHRISTMAS ANIMATIONS 🎄 */
-
-/* Snowfall effect on hover */
-@keyframes snowfall {
-  0% {
-    transform: translateY(-10px);
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(10px);
-    opacity: 0;
-  }
+/* Light Mode - Soft festive background */
+.bg-light {
+  background: linear-gradient(135deg, #fff5f5 0%, #f0fff0 100%) !important;
 }
 
-/* Slide in animation for cards */
-@keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* Dark Mode - Cozy Christmas night */
+.bg-dark {
+  background: #0f172a !important; /* Deep navy blue */
+  color: #e2e8f0 !important;
 }
 
+/* Cards - General */
 .card {
-  animation: slideIn 0.3s ease;
+  border-radius: 16px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 🎁 Christmas sparkle effect 🎁 */
-@keyframes sparkle {
-  0%, 100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.7;
-    transform: scale(1.1);
-  }
-}
-
-/* Hover effects for cards */
 .card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(220, 53, 69, 0.3) !important;
-  transition: all 0.3s ease;
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
 
-/* 🎄 Christmas button styles 🎄 */
-.btn {
-  transition: all 0.3s ease;
-  font-weight: 500;
+/* Dark mode card adjustments */
+.bg-dark .card {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
 }
 
-.btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+/* Header styling */
+.text-success {
+  color: #16a34a !important;
 }
 
+.text-danger {
+  color: #dc2626 !important;
+}
+
+/* Form inputs in dark mode */
+.bg-dark .form-control,
+.bg-dark .form-select {
+  background-color: #1e293b;
+  border-color: #dc2626;
+  color: #e2e8f0;
+}
+
+.bg-dark .form-control:focus,
+.bg-dark .form-select:focus {
+  background-color: #1e293b;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 0.25rem rgba(220, 38, 38, 0.25);
+  color: #e2e8f0;
+}
+
+/* Buttons - Festive colors */
 .btn-success {
-  background: linear-gradient(135deg, #28a745 0%, #1e7e34 100%);
+  background: linear-gradient(135deg, #16a34a, #15803d);
   border: none;
 }
 
 .btn-danger {
-  background: linear-gradient(135deg, #dc3545 0%, #c82333 100%);
+  background: linear-gradient(135deg, #dc2626, #b91c1c);
   border: none;
 }
 
 .btn-warning {
-  background: linear-gradient(135deg, #ffc107 0%, #e0a800 100%);
+  background: linear-gradient(135deg, #f59e0b, #d97706);
   border: none;
   color: #000;
 }
 
-/* 🎅 Christmas badge styles 🎅 */
+/* Badge adjustments */
 .badge {
+  padding: 0.5em 1em;
   font-weight: 600;
-  padding: 0.5em 0.75em;
 }
 
-/* ❄️ Custom scrollbar (Christmas colors) ❄️ */
+/* Statistics cards */
+.border-primary { border-color: #3b82f6 !important; border-width: 3px !important; }
+.border-warning { border-color: #f59e0b !important; border-width: 3px !important; }
+.border-info    { border-color: #0ea5e9 !important; border-width: 3px !important; }
+.border-success { border-color: #16a34a !important; border-width: 3px !important; }
+.border-danger  { border-color: #dc2626 !important; border-width: 3px !important; }
+.border-dark    { border-color: #475569 !important; border-width: 3px !important; }
+
+/* Card headers */
+.card-header.bg-success { background: #dc2626 !important; } /* Red for add/edit form */
+.card-header.bg-warning { background: #f59e0b !important; } /* Gold for task list header */
+.card-header.bg-danger  { background: #dc2626 !important; } /* Red for filter */
+
+/* Text in dark mode */
+.bg-dark .text-muted {
+  color: #94a3b8 !important;
+}
+
+/* Scrollbar (Christmas colors) */
 ::-webkit-scrollbar {
   width: 12px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
+  background: #f1f5f9;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #dc3545 0%, #28a745 100%);
+  background: linear-gradient(#dc2626, #16a34a);
   border-radius: 10px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #c82333 0%, #1e7e34 100%);
+  background: linear-gradient(#b91c1c, #15803d);
 }
 
-/* Dark theme scrollbar */
-body.dark-theme ::-webkit-scrollbar-track {
-  background: #2c2c2c;
+/* Dark mode scrollbar */
+.bg-dark::-webkit-scrollbar-track {
+  background: #1e293b;
 }
 
-/* 🎄 Focus styles for accessibility 🎄 */
-input:focus, 
-textarea:focus, 
-select:focus, 
-button:focus {
-  outline: 3px solid #28a745;
-  outline-offset: 2px;
-}
-
-/* 🎁 Christmas text colors 🎁 */
-.text-christmas-red {
-  color: #dc3545 !important;
-}
-
-.text-christmas-green {
-  color: #28a745 !important;
-}
-
-.text-christmas-gold {
-  color: #ffc107 !important;
-}
-
-/* ❄️ Christmas borders ❄️ */
-.border-christmas {
-  border: 3px solid #dc3545 !important;
-  border-left: 5px solid #28a745 !important;
-}
-
-/* 🎅 Print styles 🎅 */
-@media print {
-  .btn, 
-  .card-header {
-    display: none;
-  }
-  
-  body {
-    background: white !important;
-  }
-  
-  .card {
-    break-inside: avoid;
-  }
-}
-
-/* 🎄 Responsive adjustments 🎄 */
+/* Responsive adjustments */
 @media (max-width: 768px) {
   .display-3 {
+    font-size: 2.5rem;
+  }
+  .display-4 {
     font-size: 2rem;
   }
-  
-  .display-4 {
-    font-size: 1.5rem;
-  }
-}
-
-/* 🎁 Loading animation (optional) 🎁 */
-@keyframes pulse {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
-
-.loading {
-  animation: pulse 1.5s ease-in-out infinite;
-}
-
-/* ❄️ Festive shadows ❄️ */
-.shadow-christmas {
-  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.2),
-              0 1px 3px rgba(40, 167, 69, 0.1) !important;
-}
-
-.shadow-lg {
-  box-shadow: 0 10px 30px rgba(220, 53, 69, 0.15),
-              0 3px 8px rgba(40, 167, 69, 0.1) !important;
-}
-
-/* 🎄 Success and error alerts Christmas theme 🎄 */
-.alert-success {
-  background-color: #d4edda;
-  border-color: #28a745;
-  color: #155724;
-}
-
-.alert-danger {
-  background-color: #f8d7da;
-  border-color: #dc3545;
-  color: #721c24;
-}
-
-.alert-warning {
-  background-color: #fff3cd;
-  border-color: #ffc107;
-  color: #856404;
-}
-
-/* 🎅 Form controls Christmas styling 🎅 */
-.form-control:focus,
-.form-select:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
-}
-
-.is-invalid:focus {
-  border-color: #dc3545;
-  box-shadow: 0 0 0 0.2rem rgba(220, 53, 69, 0.25);
-}
-
-/* ❄️ Christmas card decorations ❄️ */
-.card-header {
-  font-weight: bold;
-  letter-spacing: 0.5px;
 }

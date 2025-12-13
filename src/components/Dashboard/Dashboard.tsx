@@ -1,3 +1,4 @@
+
 /* eslint-disable react-hooks/set-state-in-effect */
 import { useState, useEffect } from 'react';
 import type { Task, FilterOptions, SortOptions, TaskFormData, DashboardProps } from '../../types';
@@ -25,8 +26,8 @@ export const Dashboard = ({ theme}: DashboardProps) => {
   
   // Load tasks from localStorage on mount
   useEffect(() => {
-    //const loadedTasks = loadTasks();
-    setTasks(loadTasks);
+    const loadedTasks = loadTasks();
+    setTasks(loadedTasks);
   }, []);
   
   // Save tasks whenever they change
@@ -188,7 +189,7 @@ export const Dashboard = ({ theme}: DashboardProps) => {
             </div>
             <div className="card-body">
               <TaskList
-                task={filteredAndSortedTasks}
+                tasks={filteredAndSortedTasks}
                 onStatusChange={handleStatusChange}
                 onDelete={handleDeleteTask}
                 onEdit={handleEditTask}
